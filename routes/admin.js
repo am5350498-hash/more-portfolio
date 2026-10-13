@@ -6,19 +6,13 @@ var fs = require("fs");
 var path=require('path');
 const router = express.Router();
 var util=require('util');
+const { conn, exe } = require("../db");
 
-var conn=mysql.createConnection({
-    host:'bjg8nj70obtyintphwav-mysql.services.clever-cloud.com',
-    user:'u195pavz4lrpfvjf',
-    password:'pxobdRcPV1vXXyhRogdq',
-    database:'bjg8nj70obtyintphwav'
-})
 router.use(session({
     secret:'ajaymore',
     resave:false,
     saveUninitialized:true
 }))
-var exe=util.promisify(conn.query).bind(conn);
 router.use(express.urlencoded({extended:true}));
 router.use(fileupload());
 function session_check(req,res,next){
