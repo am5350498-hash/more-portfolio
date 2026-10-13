@@ -8,10 +8,10 @@ const router = express.Router();
 var util=require('util');
 
 var conn=mysql.createConnection({
-    host:'bxpsavyagjw60qgiboys-mysql.services.clever-cloud.com',
-    user:'uymdxyeububzgbo4',
-    password:'GdDzVXygTiaxfOsQeJy8',
-    database:'bxpsavyagjw60qgiboys'
+    host:'bjg8nj70obtyintphwav-mysql.services.clever-cloud.com',
+    user:'u195pavz4lrpfvjf',
+    password:'pxobdRcPV1vXXyhRogdq',
+    database:'bjg8nj70obtyintphwav'
 })
 router.use(session({
     secret:'ajaymore',
