@@ -2,6 +2,7 @@ const express=require('express');
 const router=express.Router();
 
 var { conn, exe } = require('../db');
+
 router.use(express.urlencoded({extended:true}));
 
 router.get('/',async(req,res)=>{
@@ -44,9 +45,11 @@ router.get('/portfolio', async (req, res) => {
 
     var sql = "SELECT * FROM porfolio";
     var data = await exe(sql);
+     var select = `select * from blog`
+    var blog = await exe(select)
 
     res.render("website/portfolio", {
-        portfolio: data});
+        portfolio: data ,blog:blog});
 
 });
 

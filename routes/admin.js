@@ -4,8 +4,9 @@ var fileupload=require('express-fileupload');
 var fs = require("fs");
 var path=require('path');
 const router = express.Router();
-
 var { conn, exe } = require('../db');
+
+
 router.use(session({
     secret:'ajaymore',
     resave:false,

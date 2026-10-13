@@ -40,12 +40,7 @@
                         <label class="form-label fw-semibold">Address</label>
                         <textarea class="form-control" name="address" rows="2"><%=data.address%></textarea>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label fw-semibold">Logo</label>
-                        <input type="hidden" name="old_logo" value="<%=data.logo%>" class="form-control" />
-                        <input type="file" name="logo" class="form-control" />
-                        <img src="/<%=data.logo%>" height="100px" width="100px"/>
-                    </div>
+                    
                     <div class="col-md-6 mb-3">
                         <label class="form-label fw-semibold">Map</label>
                         <input type="text" name="map" value="<%=data.map%>" class="form-control" />
@@ -59,6 +54,7 @@
             </form>
         </div>
     </div>
+</div>
 </div>
 
 <!-- Social Media Settings -->
