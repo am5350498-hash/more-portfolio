@@ -1,31 +1,23 @@
-
 const mysql = require('mysql2');
-const util = require('util');
 
-const conn = mysql.createPool({
-    host: 'b8qruw7a2fwly78kjl5e-mysql.services.clever-cloud.com',
-    user: 'u3tpdmqhlebcluir',
-    password:'u3tpdmqhlebcluir',
-    database: 'b8qruw7a2fwly78kjl5e',
-    port: 3306,
-
+const db = mysql.createPool({
+    host: process.env.'b8qruw7a2fwly78kjl5e-mysql.services.clever-cloud.com',
+    user: process.env.'u3tpdmqhlebcluir',
+    password: process.env.'u3tpdmqhlebcluir',
+    database: process.env.'b8qruw7a2fwly78kjl5e',
+    port: process.env.DB_PORT || 3306,
     waitForConnections: true,
-    connectionLimit: 5,
-    queueLimit: 0,
-    enableKeepAlive: true,
-    keepAliveInitialDelay: 0
+    connectionLimit: 10,
+    queueLimit: 0
 });
 
-const exe = util.promisify(conn.query).bind(conn);
-
-conn.getConnection((err, connection) => {
+db.getConnection((err, connection) => {
     if (err) {
-        console.log('Database Connection Error:', err.message);
-        return;
+        console.log("❌ MySQL Connection Failed:", err.message);
+    } else {
+        console.log("✅ MySQL Connected Successfully");
+        connection.release();
     }
-
-    console.log('✅ MySQL Connected Successfully');
-    connection.release();
 });
 
-module.exports = { conn, exe };
+module.exports = db;
