@@ -1,32 +1,11 @@
-// var mysql = require('mysql2');
-// var util = require('util');
-
-// var conn = mysql.createConnection({
-//     host: "localhost",
-//     user: 'root',
-//     password: 'root',
-//     database: 'alex_rivera',
-//     port:3306
-// });
-
-// var exe = util.promisify(conn.query).bind(conn);
-
-// module.exports = { conn, exe };
-
-
 const mysql = require('mysql2');
 
 const conn = mysql.createPool({
-    // host: 'bugpnyuot0dqbbwmtf38-mysql.services.clever-cloud.com',
-    // user: 'ufefbodntmh3jdtp',
-    // password:'29ox0cwWp4IzHNFjJhIn',
-    // database: 'bugpnyuot0dqbbwmtf38',
-    // port: 3306,
-    host: "localhost",
-    user: 'root',
-    password: 'root',
-    database: 'alex_rivera',
-    port:3306,
+    host:  'localhost',
+    user:  'root',
+    password:  'root',
+    database:  'alex_rivera',
+    port:  3306,
 
     waitForConnections: true,
     connectionLimit: 5,
@@ -38,10 +17,7 @@ const conn = mysql.createPool({
 function exe(sql, params = []) {
     return new Promise((resolve, reject) => {
         conn.query(sql, params, (err, results) => {
-            if (err) {
-                return reject(err);
-            }
-
+            if (err) return reject(err);
             resolve(results);
         });
     });
