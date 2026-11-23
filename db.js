@@ -18,16 +18,11 @@ const mysql = require('mysql2');
 const util = require('util');
 
 const conn = mysql.createPool({
-    // host: 'bugpnyuot0dqbbwmtf38-mysql.services.clever-cloud.com',
-    // user: 'ufefbodntmh3jdtp',
-    // password:'29ox0cwWp4IzHNFjJhIn',
-    // database: 'bugpnyuot0dqbbwmtf38',
-    // port: 3306
-    host: "localhost",
-    user: 'root',
-    password: 'root',
-    database: 'alex_rivera',
-    port:3306,
+    host: 'bugpnyuot0dqbbwmtf38-mysql.services.clever-cloud.com',
+     user: 'ufefbodntmh3jdtp',
+     password:'29ox0cwWp4IzHNFjJhIn',
+     database: 'bugpnyuot0dqbbwmtf38',
+     port: 3306,
 
     waitForConnections: true,
     connectionLimit: 5,
