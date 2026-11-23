@@ -18,10 +18,10 @@ const mysql = require('mysql2');
 const util = require('util');
 
 const conn = mysql.createPool({
-    host: 'bugpnyuot0dqbbwmtf38-mysql.services.clever-cloud.com',
-     user: 'ufefbodntmh3jdtp',
+    host: 'bx9tsc7z3jzn2peksvfn-mysql.services.clever-cloud.com',
+     user: 'GiRUGVN1n2hObbvrGtuG',
      password:'29ox0cwWp4IzHNFjJhIn',
-     database: 'bugpnyuot0dqbbwmtf38',
+     database: 'bx9tsc7z3jzn2peksvfn',
      port: 3306,
 
     waitForConnections: true,
