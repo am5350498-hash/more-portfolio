@@ -1,23 +1,46 @@
+// var mysql = require('mysql2');
+// var util = require('util');
+
+// var conn = mysql.createConnection({
+//     host: "localhost",
+//     user: 'root',
+//     password: 'root',
+//     database: 'alex_rivera',
+//     port:3306
+// });
+
+// var exe = util.promisify(conn.query).bind(conn);
+
+// module.exports = { conn, exe };
+
+
 const mysql = require('mysql2');
+const util = require('util');
 
-const db = mysql.createPool({
-    host:'bugpnyuot0dqbbwmtf38-mysql.services.clever-cloud.com',
-    user:'ufefbodntmh3jdtp',
-    password: 'ufefbodntmh3jdtp',
-    database: 'bugpnyuot0dqbbwmtf38',
-    port:  3306,
+const conn = mysql.createPool({
+    host: "b8qruw7a2fwly78kjl5e-mysql.services.clever-cloud.com",
+    user: 'u3tpdmqhlebcluir',
+    password: 'u3tpdmqhlebcluir',
+    database: 'b8qruw7a2fwly78kjl5e',
+    port:3306,
+
     waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
+    connectionLimit: 5,
+    queueLimit: 0,
+    enableKeepAlive: true,
+    keepAliveInitialDelay: 0
 });
 
-db.getConnection((err, connection) => {
+const exe = util.promisify(conn.query).bind(conn);
+
+conn.getConnection((err, connection) => {
     if (err) {
-        console.log("❌ MySQL Connection Failed:", err.message);
-    } else {
-        console.log("✅ MySQL Connected Successfully");
-        connection.release();
+        console.log('Database Connection Error:', err.message);
+        return;
     }
+
+    console.log('✅ MySQL Connected Successfully');
+    connection.release();
 });
 
-module.exports = db;
+module.exports = { conn, exe };
