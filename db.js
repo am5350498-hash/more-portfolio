@@ -1,27 +1,12 @@
-// var mysql = require('mysql2');
-// var util = require('util');
-
-// var conn = mysql.createConnection({
-//     host: "localhost",
-//     user: 'root',
-//     password: 'root',
-//     database: 'alex_rivera',
-//     port:3306
-// });
-
-// var exe = util.promisify(conn.query).bind(conn);
-
-// module.exports = { conn, exe };
-
 
 const mysql = require('mysql2');
 const util = require('util');
 
 const conn = mysql.createPool({
-    host: 'bugpnyuot0dqbbwmtf38-mysql.services.clever-cloud.com',
-    user: 'ufefbodntmh3jdtp',
-    password:'ufefbodntmh3jdtp',
-    database: 'bugpnyuot0dqbbwmtf38',
+    host: 'b8qruw7a2fwly78kjl5e-mysql.services.clever-cloud.com',
+    user: 'u3tpdmqhlebcluir',
+    password:'u3tpdmqhlebcluir',
+    database: 'b8qruw7a2fwly78kjl5e',
     port: 3306,
 
     waitForConnections: true,
