@@ -20,7 +20,7 @@
 <aside class="sidebar" id="sidebar">
 <div class="sidebar-brand">
 <i class="fas fa-code"></i>
-<span>Portfolio<span>Admin</span></span>
+<span>Admin<span> <br>Ajay More</span></span>
 </div>
 
 <button class="sidebar-toggle" id="sidebarToggle">
@@ -240,21 +240,38 @@
 
 <!-- User Profile -->
 <div class="dropdown">
-    <button class="btn btn-light p-0" data-bs-toggle="dropdown">
-        <img src="https://ui-avatars.com/api/?name=Admin+User&size=40&background=6c63ff&color=fff" 
-                alt="Profile" class="rounded-circle" width="40" height="40" />
+    <button class="btn btn-light p-0 border-0 bg-transparent"
+            data-bs-toggle="dropdown"
+            aria-expanded="false">
+
+        <img src="/uploads/<%= about && about.Image ? about.Image : '' %>"
+             alt="Profile"
+             class="rounded-circle"
+             width="45"
+             height="45"
+             style="object-fit: cover; border: 2px solid #6c63ff;">
     </button>
+
     <ul class="dropdown-menu dropdown-menu-end">
-        <li><a class="dropdown-item" href="/admin/setting">
-            <i class="fas fa-user me-2"></i>Profile
-        </a></li>
-        <li><a class="dropdown-item" href="/admin/setting">
-            <i class="fas fa-cog me-2"></i>Settings
-        </a></li>
-        <li><hr class="dropdown-divider" /></li>
-        <li><a class="dropdown-item text-danger" href="/admin/logout">
-            <i class="fas fa-sign-out-alt me-2"></i>Logout
-        </a></li>
+        <li>
+            <a class="dropdown-item" href="/admin/setting">
+                <i class="fas fa-user me-2"></i>Profile
+            </a>
+        </li>
+
+        <li>
+            <a class="dropdown-item" href="/admin/setting">
+                <i class="fas fa-cog me-2"></i>Settings
+            </a>
+        </li>
+
+        <li><hr class="dropdown-divider"></li>
+
+        <li>
+            <a class="dropdown-item text-danger" href="/admin/logout">
+                <i class="fas fa-sign-out-alt me-2"></i>Logout
+            </a>
+        </li>
     </ul>
 </div>
 </div>

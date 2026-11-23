@@ -1,212 +1,585 @@
+
 <%- include('header.ejs'); %>
 
-<!-- ===== DASHBOARD CONTENT ===== -->
-<div class="page-content">
+
+
+
+<div class="dashboard-wrapper">
 <div class="container-fluid">
-    <!-- Page Header -->
-    <div class="page-header d-flex justify-content-between align-items-center">
+
+    <!-- ================= HEADER ================= -->
+
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+
         <div>
-            <h1 class="h3 mb-1">Dashboard</h1>
-            <p class="text-muted small mb-0">Welcome back, <%=username %> Here's your overview</p>
+            <h2 class="dashboard-title">Dashboard</h2>
+
+            <p class="dashboard-subtitle mb-0">
+                Welcome back, <strong><%= username %></strong> 👋
+                Here is your website overview.
+            </p>
         </div>
-        <div>
-            <button class="btn btn-primary">
-                <i class="fas fa-plus me-2"></i>Add New
-            </button>
+
+        <div class="mt-3 mt-md-0">
+            <a href="/admin/portfolio_list" class="btn btn-primary">
+                <i class="fas fa-folder me-2"></i>
+                View Projects
+            </a>
         </div>
+
     </div>
 
-    <!-- Stat Cards -->
-    <div class="row g-4">
-        <div class="col-xl-3 col-lg-6 col-md-6">
-            <div class="stat-card">
-                <div class="stat-icon bg-primary">
-                    <i class="fas fa-folder-open"></i>
+    <!-- ================= FIRST ROW ================= -->
+
+    <div class="row g-4 mb-4">
+
+        <!-- Projects -->
+        <div class="col-xl-3 col-md-6 col-12">
+            <a href="/admin/portfolio_list" class="dash-card-link">
+                <div class="dash-card">
+                    <div class="dash-icon bg-primary">
+                        <i class="fas fa-folder-open"></i>
+                    </div>
+
+                    <h2 class="dash-number">
+                        <%= totalProjects %>
+                    </h2>
+
+                    <p class="dash-label">Total Projects</p>
                 </div>
-                <div class="stat-info">
-                    <h3 class="stat-number" data-count="156">0</h3>
-                    <p class="stat-label">Total Projects</p>
+            </a>
+        </div>
+
+        <!-- Blogs -->
+        <div class="col-xl-3 col-md-6 col-12">
+            <a href="/admin/blog_list" class="dash-card-link">
+                <div class="dash-card">
+                    <div class="dash-icon bg-success">
+                        <i class="fas fa-blog"></i>
+                    </div>
+
+                    <h2 class="dash-number">
+                        <%= totalBlogs %>
+                    </h2>
+
+                    <p class="dash-label">Total Blog Posts</p>
                 </div>
-                <div class="stat-change positive">
-                    <i class="fas fa-arrow-up"></i> 12%
+            </a>
+        </div>
+
+        <!-- Services -->
+        <div class="col-xl-3 col-md-6 col-12">
+            <a href="/admin/service_list" class="dash-card-link">
+                <div class="dash-card">
+                    <div class="dash-icon bg-warning">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+
+                    <h2 class="dash-number">
+                        <%= totalServices %>
+                    </h2>
+
+                    <p class="dash-label">Total Services</p>
                 </div>
+            </a>
+        </div>
+
+        <!-- Visitors -->
+        <div class="col-xl-3 col-md-6 col-12">
+            <div class="dash-card">
+                <div class="dash-icon bg-info">
+                    <i class="fas fa-eye"></i>
+                </div>
+
+                <h2 class="dash-number">
+                    <%= totalVisitors %>
+                </h2>
+
+                <p class="dash-label">Website Visitors</p>
             </div>
         </div>
-        
-        <div class="col-xl-3 col-lg-6 col-md-6">
-            <div class="stat-card">
-                <div class="stat-icon bg-success">
-                    <i class="fas fa-blog"></i>
-                </div>
-                <div class="stat-info">
-                    <h3 class="stat-number" data-count="48">0</h3>
-                    <p class="stat-label">Blog Posts</p>
-                </div>
-                <div class="stat-change positive">
-                    <i class="fas fa-arrow-up"></i> 8%
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-xl-3 col-lg-6 col-md-6">
-            <div class="stat-card">
-                <div class="stat-icon bg-warning">
-                    <i class="fas fa-envelope"></i>
-                </div>
-                <div class="stat-info">
-                    <h3 class="stat-number" data-count="32">0</h3>
-                    <p class="stat-label">Messages</p>
-                </div>
-                <div class="stat-change negative">
-                    <i class="fas fa-arrow-down"></i> 3%
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-xl-3 col-lg-6 col-md-6">
-            <div class="stat-card">
-                <div class="stat-icon bg-danger">
-                    <i class="fas fa-users"></i>
-                </div>
-                <div class="stat-info">
-                    <h3 class="stat-number" data-count="1240">0</h3>
-                    <p class="stat-label">Visitors</p>
-                </div>
-                <div class="stat-change positive">
-                    <i class="fas fa-arrow-up"></i> 24%
-                </div>
-            </div>
-        </div>
+
     </div>
 
-    <!-- Charts Row -->
-    <div class="row g-4 mt-2">
+    <!-- ================= SECOND ROW ================= -->
+
+    <div class="row g-4 mb-4">
+
+        <!-- Testimonials -->
+        <div class="col-xl-3 col-md-6 col-12">
+            <a href="/admin/testimonial_list" class="dash-card-link">
+                <div class="dash-card">
+                    <div class="dash-icon bg-danger">
+                        <i class="fas fa-comments"></i>
+                    </div>
+
+                    <h2 class="dash-number">
+                        <%= totalTestimonials %>
+                    </h2>
+
+                    <p class="dash-label">Testimonials</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Pending -->
+        <div class="col-xl-3 col-md-6 col-12">
+            <a href="/admin/pending_enq" class="dash-card-link">
+                <div class="dash-card">
+                    <div class="dash-icon" style="background:#f97316;">
+                        <i class="fas fa-clock"></i>
+                    </div>
+
+                    <h2 class="dash-number">
+                        <%= pendingEnquiries %>
+                    </h2>
+
+                    <p class="dash-label">Pending Enquiries</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Confirm -->
+        <div class="col-xl-3 col-md-6 col-12">
+            <a href="/admin/confirm_enq" class="dash-card-link">
+                <div class="dash-card">
+                    <div class="dash-icon" style="background:#16a34a;">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+
+                    <h2 class="dash-number">
+                        <%= confirmEnquiries %>
+                    </h2>
+
+                    <p class="dash-label">Confirm Enquiries</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Rejected -->
+        <div class="col-xl-3 col-md-6 col-12">
+            <a href="/admin/reject_enq" class="dash-card-link">
+                <div class="dash-card">
+                    <div class="dash-icon" style="background:#dc2626;">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+
+                    <h2 class="dash-number">
+                        <%= rejectEnquiries %>
+                    </h2>
+
+                    <p class="dash-label">Rejected Enquiries</p>
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- ================= CHARTS ================= -->
+
+    <div class="row g-4 mb-4">
+
+        <!-- Visitors Chart -->
         <div class="col-xl-8 col-lg-12">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title mb-0">Monthly Visitors</h5>
+            <div class="dashboard-box">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="box-heading mb-0">
+                        <i class="fas fa-chart-line text-primary me-2"></i>
+                        Monthly Website Visitors
+                    </h5>
+
+                    <span class="badge bg-light text-dark">
+                        <%= new Date().getFullYear() %>
+                    </span>
                 </div>
-                <div class="card-body">
-                    <canvas id="visitorsChart" height="250"></canvas>
+
+                <div class="chart-area">
+                    <canvas id="visitorsChart"></canvas>
                 </div>
+
             </div>
         </div>
+
+        <!-- Overview Chart -->
         <div class="col-xl-4 col-lg-12">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title mb-0">Portfolio Categories</h5>
+            <div class="dashboard-box">
+
+                <h5 class="box-heading mb-3">
+                    <i class="fas fa-chart-pie text-success me-2"></i>
+                    Website Overview
+                </h5>
+
+                <div class="chart-area">
+                    <canvas id="overviewChart"></canvas>
                 </div>
-                <div class="card-body">
-                    <canvas id="categoriesChart" height="250"></canvas>
-                </div>
+
             </div>
         </div>
+
     </div>
 
-    <!-- Recent Activity & Messages -->
-    <div class="row g-4 mt-2">
-        <div class="col-xl-7 col-lg-12">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="card-title mb-0">Recent Activity</h5>
-                    <a href="#" class="text-decoration-none small">View All</a>
+    <!-- ================= RECENT PROJECTS & BLOGS ================= -->
+
+    <div class="row g-4 mb-4">
+
+        <!-- RECENT PROJECTS -->
+        <div class="col-xl-6 col-lg-12">
+            <div class="dashboard-box">
+
+                <div class="recent-header d-flex justify-content-between align-items-center">
+
+                    <h5 class="box-heading mb-0">
+                        <i class="fas fa-folder-open text-primary me-2"></i>
+                        Recent Projects
+                    </h5>
+
+                    <a href="/admin/portfolio_list" class="dash-action">
+                        View All <i class="fas fa-arrow-right ms-1"></i>
+                    </a>
+
                 </div>
-                <div class="card-body p-0">
-                    <div class="activity-list">
-                        <div class="activity-item">
-                            <div class="activity-icon bg-primary">
-                                <i class="fas fa-plus"></i>
+
+                <div class="recent-list">
+
+                    <% if (recentProjects && recentProjects.length > 0) { %>
+
+                        <% recentProjects.forEach(function(project) { %>
+
+                            <div class="recent-item">
+
+                                <div class="recent-icon project-icon">
+                                    <i class="fas fa-code"></i>
+                                </div>
+
+                                <div class="recent-info">
+                                    <h6><%= project.project_name || 'Untitled Project' %></h6>
+                                    <p><%= project.title || 'Project' %></p>
+                                </div>
+
+                                <div class="recent-meta">
+                                    <i class="fas fa-chevron-right"></i>
+                                </div>
+
                             </div>
-                            <div class="activity-content">
-                                <p><strong>John Doe</strong> added a new portfolio item</p>
-                                <small>2 hours ago</small>
-                            </div>
+
+                        <% }) %>
+
+                    <% } else { %>
+
+                        <div class="recent-empty">
+                            <i class="fas fa-folder-open"></i>
+                            <p>No projects available</p>
                         </div>
-                        <div class="activity-item">
-                            <div class="activity-icon bg-success">
-                                <i class="fas fa-edit"></i>
-                            </div>
-                            <div class="activity-content">
-                                <p><strong>Admin</strong> updated the about section</p>
-                                <small>4 hours ago</small>
-                            </div>
-                        </div>
-                        <div class="activity-item">
-                            <div class="activity-icon bg-warning">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <div class="activity-content">
-                                <p><strong>New user</strong> registered: Sarah Smith</p>
-                                <small>6 hours ago</small>
-                            </div>
-                        </div>
-                        <div class="activity-item">
-                            <div class="activity-icon bg-danger">
-                                <i class="fas fa-trash"></i>
-                            </div>
-                            <div class="activity-content">
-                                <p><strong>Admin</strong> deleted a testimonial</p>
-                                <small>1 day ago</small>
-                            </div>
-                        </div>
-                        <div class="activity-item">
-                            <div class="activity-icon bg-info">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="activity-content">
-                                <p><strong>New message</strong> from contact form</p>
-                                <small>1 day ago</small>
-                            </div>
-                        </div>
-                    </div>
+
+                    <% } %>
+
                 </div>
+
             </div>
         </div>
-        
-        <div class="col-xl-5 col-lg-12">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="card-title mb-0">Recent Messages</h5>
-                    <a href="#" class="text-decoration-none small">View All</a>
+
+        <!-- RECENT BLOGS -->
+        <div class="col-xl-6 col-lg-12">
+            <div class="dashboard-box">
+
+                <div class="recent-header d-flex justify-content-between align-items-center">
+
+                    <h5 class="box-heading mb-0">
+                        <i class="fas fa-blog text-success me-2"></i>
+                        Recent Blogs
+                    </h5>
+
+                    <a href="/admin/blog_list" class="dash-action">
+                        View All <i class="fas fa-arrow-right ms-1"></i>
+                    </a>
+
                 </div>
-                <div class="card-body p-0">
-                    <div class="message-list">
-                        <div class="message-item unread">
-                            <div class="message-avatar">
-                                <img src="https://ui-avatars.com/api/?name=Alice+Johnson&size=40&background=6c63ff&color=fff" alt="Avatar" />
+
+                <div class="recent-list">
+
+                    <% if (recentBlogs && recentBlogs.length > 0) { %>
+
+                        <% recentBlogs.forEach(function(blog) { %>
+
+                            <div class="recent-item">
+
+                                <div class="recent-icon blog-icon">
+                                    <i class="fas fa-newspaper"></i>
+                                </div>
+
+                                <div class="recent-info">
+                                    <h6><%= blog.post_name || 'Untitled Blog' %></h6>
+                                    <p>
+                                        <i class="far fa-calendar-alt me-1"></i>
+                                        <%= blog.post_date || 'Date not available' %>
+                                    </p>
+                                </div>
+
+                                <div class="recent-meta">
+                                    <i class="fas fa-chevron-right"></i>
+                                </div>
+
                             </div>
-                            <div class="message-content">
-                                <h6>Alice Johnson</h6>
-                                <p>Hi, I'm interested in your web development services...</p>
-                                <small>2 hours ago</small>
-                            </div>
-                            <span class="badge bg-danger">New</span>
+
+                        <% }) %>
+
+                    <% } else { %>
+
+                        <div class="recent-empty">
+                            <i class="fas fa-blog"></i>
+                            <p>No blogs available</p>
                         </div>
-                        <div class="message-item">
-                            <div class="message-avatar">
-                                <img src="https://ui-avatars.com/api/?name=Robert+Chen&size=40&background=28a745&color=fff" alt="Avatar" />
-                            </div>
-                            <div class="message-content">
-                                <h6>Robert Chen</h6>
-                                <p>Great work on the portfolio project! Can we...</p>
-                                <small>1 day ago</small>
-                            </div>
-                        </div>
-                        <div class="message-item">
-                            <div class="message-avatar">
-                                <img src="https://ui-avatars.com/api/?name=Maria+Garcia&size=40&background=dc3545&color=fff" alt="Avatar" />
-                            </div>
-                            <div class="message-content">
-                                <h6>Maria Garcia</h6>
-                                <p>I have a question about your pricing plans...</p>
-                                <small>2 days ago</small>
-                            </div>
-                        </div>
-                    </div>
+
+                    <% } %>
+
                 </div>
+
             </div>
         </div>
+
     </div>
+
+    <!-- ================= RECENT ENQUIRIES ================= -->
+
+    <div class="row g-4 mb-4">
+
+        <div class="col-12">
+            <div class="dashboard-box">
+
+                <div class="recent-header d-flex justify-content-between align-items-center">
+
+                    <h5 class="box-heading mb-0">
+                        <i class="fas fa-envelope text-warning me-2"></i>
+                        Recent Enquiries
+                    </h5>
+
+                    <a href="/admin/pending_enq" class="dash-action">
+                        View Pending <i class="fas fa-arrow-right ms-1"></i>
+                    </a>
+
+                </div>
+
+                <div class="recent-list">
+
+                    <% if (recentEnquiries && recentEnquiries.length > 0) { %>
+
+                        <% recentEnquiries.forEach(function(enquiry) { %>
+
+                            <div class="recent-item">
+
+                                <div class="recent-icon enquiry-icon">
+                                    <i class="fas fa-envelope-open"></i>
+                                </div>
+
+                                <div class="recent-info">
+                                    <h6>Website Enquiry</h6>
+                                    <p>
+                                        Enquiry ID:
+                                        <span class="recent-id">
+                                            #<%= enquiry.cid %>
+                                        </span>
+                                    </p>
+                                </div>
+
+                                <div>
+
+                                    <% if (enquiry.cstatus === 'pending') { %>
+
+                                        <span class="recent-status pending">
+                                            <i class="fas fa-clock me-1"></i>
+                                            Pending
+                                        </span>
+
+                                    <% } else if (enquiry.cstatus === 'confirm') { %>
+
+                                        <span class="recent-status confirm">
+                                            <i class="fas fa-check-circle me-1"></i>
+                                            Confirm
+                                        </span>
+
+                                    <% } else { %>
+
+                                        <span class="recent-status reject">
+                                            <i class="fas fa-times-circle me-1"></i>
+                                            Reject
+                                        </span>
+
+                                    <% } %>
+
+                                </div>
+
+                            </div>
+
+                        <% }) %>
+
+                    <% } else { %>
+
+                        <div class="recent-empty">
+                            <i class="fas fa-envelope-open"></i>
+                            <p>No enquiries available</p>
+                        </div>
+
+                    <% } %>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
 </div>
 </div>
+
+<!-- ================= CHART DATA ================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    window.dashboardMonthlyData = <%- JSON.stringify(monthlyData || []) %>;
+
+    window.dashboardCategoryData = [
+        {
+            label: "Projects",
+            total: <%= totalProjects || 0 %>
+        },
+        {
+            label: "Blogs",
+            total: <%= totalBlogs || 0 %>
+        },
+        {
+            label: "Services",
+            total: <%= totalServices || 0 %>
+        },
+        {
+            label: "Testimonials",
+            total: <%= totalTestimonials || 0 %>
+        }
+    ];
+
+    // ================= VISITORS CHART =================
+
+    const visitorsCanvas = document.getElementById('visitorsChart');
+
+    if (visitorsCanvas) {
+
+        const monthlyData = window.dashboardMonthlyData || [];
+
+        const months = [
+            'Jan', 'Feb', 'Mar', 'Apr',
+            'May', 'Jun', 'Jul', 'Aug',
+            'Sep', 'Oct', 'Nov', 'Dec'
+        ];
+
+        const visitors = Array(12).fill(0);
+
+        monthlyData.forEach(function(item) {
+            const monthIndex = Number(item.month) - 1;
+
+            if (monthIndex >= 0 && monthIndex < 12) {
+                visitors[monthIndex] = Number(item.total) || 0;
+            }
+        });
+
+        new Chart(visitorsCanvas, {
+
+            type: 'line',
+
+            data: {
+                labels: months,
+
+                datasets: [{
+                    label: 'Visitors',
+
+                    data: visitors,
+
+                    borderColor: '#4f46e5',
+                    backgroundColor: 'rgba(79,70,229,0.10)',
+
+                    fill: true,
+                    tension: 0.4,
+                    borderWidth: 3,
+
+                    pointRadius: 4,
+                    pointBackgroundColor: '#4f46e5'
+                }]
+            },
+
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            precision: 0
+                        }
+                    }
+                }
+            }
+
+        });
+    }
+
+    // ================= OVERVIEW CHART =================
+
+    const overviewCanvas = document.getElementById('overviewChart');
+
+    if (overviewCanvas) {
+
+        const categoryData = window.dashboardCategoryData || [];
+
+        new Chart(overviewCanvas, {
+
+            type: 'doughnut',
+
+            data: {
+                labels: categoryData.map(item => item.label),
+
+                datasets: [{
+                    data: categoryData.map(item => Number(item.total) || 0),
+
+                    backgroundColor: [
+                        '#4f46e5',
+                        '#16a34a',
+                        '#f59e0b',
+                        '#ef4444'
+                    ],
+
+                    borderWidth: 0,
+                    hoverOffset: 8
+                }]
+            },
+
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+
+                cutout: '68%',
+
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+
+                        labels: {
+                            padding: 18,
+                            usePointStyle: true,
+                            pointStyle: 'circle'
+                        }
+                    }
+                }
+            }
+
+        });
+    }
+</script>
+
 <%- include('footer.ejs'); %>

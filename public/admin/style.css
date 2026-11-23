@@ -43,6 +43,83 @@
     --shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.5);
 }
 
+/* =================================
+   GLOBAL DARK MODE
+================================= */
+
+html[data-theme="dark"] body {
+    background: var(--bg-body) !important;
+    color: var(--text-color) !important;
+}
+
+html[data-theme="dark"] .main-content,
+html[data-theme="dark"] .page-content,
+html[data-theme="dark"] .app-wrapper {
+    background: var(--bg-body);
+    color: var(--text-color);
+}
+
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .card-body,
+html[data-theme="dark"] .stat-card,
+html[data-theme="dark"] .login-card {
+    background: var(--bg-card) !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+html[data-theme="dark"] .card-header {
+    background: var(--bg-card) !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] h4,
+html[data-theme="dark"] h5,
+html[data-theme="dark"] h6,
+html[data-theme="dark"] label {
+    color: var(--text-color);
+}
+
+html[data-theme="dark"] .text-muted {
+    color: var(--text-muted) !important;
+}
+
+html[data-theme="dark"] .table {
+    --bs-table-bg: var(--bg-card);
+    --bs-table-color: var(--text-color);
+    --bs-table-border-color: var(--border-color);
+}
+
+html[data-theme="dark"] .form-control,
+html[data-theme="dark"] .form-select {
+    background: #1e1e35 !important;
+    color: #fff !important;
+    border-color: var(--border-color) !important;
+}
+
+html[data-theme="dark"] .dropdown-menu {
+    background: var(--bg-card) !important;
+    border-color: var(--border-color) !important;
+}
+
+html[data-theme="dark"] .dropdown-item {
+    color: var(--text-color) !important;
+}
+
+html[data-theme="dark"] .dropdown-item:hover {
+    background: #3d3b5e !important;
+}
+
+html[data-theme="dark"] .app-footer {
+    background: var(--bg-card) !important;
+    color: var(--text-muted) !important;
+    border-color: var(--border-color) !important;
+}
+
 /* ===== BASE STYLES ===== */
 * {
     margin: 0;
@@ -789,4 +866,589 @@ a {
 .btn-outline-primary:hover {
     background: var(--primary);
     border-color: var(--primary);
+}
+
+
+
+/* MOBILE SIDEBAR FIX */
+
+@media (max-width: 991.98px) {
+
+    .sidebar {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 260px;
+        height: 100vh;
+        z-index: 1100;
+        transform: translateX(-100%);
+        visibility: hidden;
+        transition: transform 0.3s ease, visibility 0.3s ease;
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+        visibility: visible;
+    }
+
+    #sidebarToggleBtn {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        position: relative;
+        z-index: 1200;
+    }
+
+    .main-content {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+}
+
+
+
+/* ================= DASHBOARD ================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.dashboard-wrapper {
+    padding: 25px;
+    background: #f5f7fb;
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.dashboard-title {
+    font-weight: 800;
+    color: #1e293b;
+    margin-bottom: 5px;
+}
+
+.dashboard-subtitle {
+    color: #64748b;
+    font-size: 14px;
+}
+
+/* ================= DASH CARDS ================= */
+
+.dash-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+}
+
+.dash-card {
+    border: 1px solid #edf0f5;
+    border-radius: 18px;
+    background: white;
+    padding: 22px;
+    height: 100%;
+    transition: 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    position: relative;
+    overflow: hidden;
+}
+
+.dash-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+}
+
+.dash-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 19px;
+    margin-bottom: 18px;
+}
+
+.dash-number {
+    font-size: 30px;
+    font-weight: 800;
+    color: #1e293b;
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.dash-label {
+    color: #64748b;
+    font-size: 14px;
+    margin-top: 7px;
+    margin-bottom: 0;
+}
+
+/* ================= DASHBOARD BOX ================= */
+
+.dashboard-box {
+    background: #fff;
+    border: 1px solid #edf0f5;
+    border-radius: 18px;
+    padding: 22px;
+    height: 100%;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    min-width: 0;
+}
+
+.box-heading {
+    font-size: 17px;
+    font-weight: 750;
+    color: #1e293b;
+}
+
+.chart-area {
+    position: relative;
+    height: 300px;
+    width: 100%;
+    min-width: 0;
+}
+
+/* ================= RECENT CARDS ================= */
+
+.recent-header {
+    padding-bottom: 16px;
+    border-bottom: 1px solid #f1f5f9;
+    margin-bottom: 18px;
+}
+
+.recent-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.recent-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px;
+    background: #f8fafc;
+    border: 1px solid #edf0f5;
+    border-radius: 14px;
+    transition: 0.25s ease;
+    min-width: 0;
+}
+
+.recent-item:hover {
+    background: #fff;
+    border-color: #dbe3f0;
+    transform: translateX(3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
+
+.recent-icon {
+    width: 45px;
+    min-width: 45px;
+    height: 45px;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+}
+
+.project-icon {
+    background: #e0e7ff;
+    color: #4f46e5;
+}
+
+.blog-icon {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.enquiry-icon {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.recent-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.recent-info h6 {
+    color: #1e293b;
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 5px;
+    overflow-wrap: anywhere;
+}
+
+.recent-info p {
+    color: #64748b;
+    font-size: 12px;
+    margin-bottom: 0;
+    overflow-wrap: anywhere;
+}
+
+.recent-meta {
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+.recent-status {
+    padding: 6px 11px;
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.recent-status.pending {
+    background: #fff7ed;
+    color: #ea580c;
+}
+
+.recent-status.confirm {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.recent-status.reject {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.recent-id {
+    font-weight: 700;
+    color: #475569;
+}
+
+.recent-empty {
+    text-align: center;
+    padding: 35px 15px;
+    background: #f8fafc;
+    border: 1px dashed #dbe2ea;
+    border-radius: 14px;
+    color: #94a3b8;
+}
+
+.recent-empty i {
+    font-size: 30px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.recent-empty p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* ================= ACTION BUTTON ================= */
+
+.dash-action {
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    background: #eef2ff;
+    color: #4f46e5;
+    padding: 8px 13px;
+    border-radius: 9px;
+    transition: 0.3s;
+}
+
+.dash-action:hover {
+    background: #4f46e5;
+    color: white;
+}
+
+/* ================= TABLET RESPONSIVE ================= */
+
+@media (max-width: 991px) {
+
+    .dashboard-wrapper {
+        padding: 18px;
+    }
+
+    .dash-card {
+        padding: 18px;
+    }
+
+    .dash-number {
+        font-size: 26px;
+    }
+
+    .dashboard-box {
+        padding: 18px;
+    }
+
+    .chart-area {
+        height: 260px;
+    }
+}
+
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media (max-width: 767px) {
+
+    .dashboard-wrapper {
+        padding: 12px;
+    }
+
+    .dashboard-title {
+        font-size: 22px;
+    }
+
+    .dashboard-subtitle {
+        font-size: 12px;
+    }
+
+    .dash-card {
+        padding: 15px;
+        border-radius: 14px;
+    }
+
+    .dash-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+
+    .dash-number {
+        font-size: 24px;
+    }
+
+    .dash-label {
+        font-size: 12px;
+    }
+
+    .dashboard-box {
+        padding: 14px;
+        border-radius: 14px;
+        margin-bottom: 15px;
+    }
+
+    .box-heading {
+        font-size: 15px;
+    }
+
+    .chart-area {
+        height: 220px;
+    }
+
+    .recent-item {
+        padding: 11px;
+        gap: 9px;
+        flex-wrap: wrap;
+    }
+
+    .recent-icon {
+        width: 40px;
+        min-width: 40px;
+        height: 40px;
+        font-size: 15px;
+    }
+
+    .recent-info {
+        flex: 1;
+    }
+
+    .recent-info h6 {
+        font-size: 13px;
+    }
+
+    .recent-info p {
+        font-size: 11px;
+    }
+
+    .recent-meta {
+        font-size: 11px;
+    }
+
+    .recent-status {
+        font-size: 10px;
+        padding: 5px 8px;
+    }
+
+    .dash-action {
+        font-size: 11px;
+        padding: 7px 10px;
+    }
+}
+
+/* ================= SMALL MOBILE ================= */
+
+@media (max-width: 480px) {
+
+    .dashboard-wrapper {
+        padding: 10px;
+    }
+
+    .dashboard-title {
+        font-size: 19px;
+    }
+
+    .dashboard-subtitle {
+        font-size: 11px;
+    }
+
+    .dash-card {
+        padding: 12px;
+        border-radius: 12px;
+    }
+
+    .dash-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+
+    .dash-number {
+        font-size: 21px;
+    }
+
+    .dash-label {
+        font-size: 11px;
+    }
+
+    .dashboard-box {
+        padding: 12px;
+        border-radius: 12px;
+    }
+
+    .box-heading {
+        font-size: 14px;
+    }
+
+    .chart-area {
+        height: 190px;
+    }
+
+    .recent-header {
+        padding-bottom: 12px;
+        margin-bottom: 12px;
+    }
+
+    .recent-item {
+        padding: 9px;
+        gap: 8px;
+    }
+
+    .recent-icon {
+        width: 36px;
+        min-width: 36px;
+        height: 36px;
+        font-size: 14px;
+    }
+
+    .recent-info h6 {
+        font-size: 12px;
+    }
+
+    .recent-info p {
+        font-size: 10px;
+    }
+
+    .recent-status {
+        font-size: 9px;
+        padding: 5px 7px;
+    }
+
+    .recent-empty {
+        padding: 25px 10px;
+    }
+
+    .recent-empty i {
+        font-size: 25px;
+    }
+
+    .recent-empty p {
+        font-size: 12px;
+    }
+
+    .dash-action {
+        font-size: 10px;
+        padding: 6px 8px;
+    }
+}
+
+/* ================= CHART RESPONSIVE ================= */
+
+canvas {
+    max-width: 100%;
+}
+
+/* ================= IMAGE RESPONSIVE ================= */
+
+.dashboard-wrapper img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ================= TOUCH DEVICE ================= */
+
+@media (hover: none) {
+    .dash-card:hover,
+    .recent-item:hover {
+        transform: none;
+    }
+}
+
+
+
+/* ================= DASHBOARD DARK MODE ================= */
+
+html[data-theme="dark"] .dashboard-wrapper {
+    background: var(--bg-body) !important;
+}
+
+html[data-theme="dark"] .dashboard-title,
+html[data-theme="dark"] .dash-number,
+html[data-theme="dark"] .box-heading,
+html[data-theme="dark"] .recent-info h6 {
+    color: #ffffff !important;
+}
+
+html[data-theme="dark"] .dashboard-subtitle,
+html[data-theme="dark"] .dash-label,
+html[data-theme="dark"] .recent-info p {
+    color: #adb5bd !important;
+}
+
+html[data-theme="dark"] .dash-card,
+html[data-theme="dark"] .dashboard-box {
+    background: var(--bg-card) !important;
+    border-color: var(--border-color) !important;
+}
+
+html[data-theme="dark"] .recent-item,
+html[data-theme="dark"] .recent-empty {
+    background: #252541 !important;
+    border-color: var(--border-color) !important;
+    color: #ffffff !important;
+}
+
+html[data-theme="dark"] .recent-id {
+    color: #ffffff !important;
+}
+
+html[data-theme="dark"] .recent-header {
+    border-color: var(--border-color) !important;
+}
+
+html[data-theme="dark"] .dash-card:hover,
+html[data-theme="dark"] .recent-item:hover {
+    background: #30304f !important;
+}
+
+html[data-theme="dark"] .badge.bg-light {
+    background: #3d3b5e !important;
+    color: #ffffff !important;
 }
