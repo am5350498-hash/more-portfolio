@@ -1,101 +1,146 @@
-const express=require('express');
-const router=express.Router();
-var mysql=require('mysql2');
-var util=require('util');
 
-var conn=mysql.createConnection({
-    host:'localhost',
-    user:'root',
-    password:'root',
-    database:'alex_rivera',
-    port:3306
+const express = require('express');
+const router = express.Router();
 
-})
+const { exe } = require('../db');
 
-var exe=util.promisify(conn.query).bind(conn);
-router.use(express.urlencoded({extended:true}));
+router.use(express.urlencoded({ extended: true }));
 
-router.get('/',async(req,res)=>{
-    var sql='select * from hero';
-    var hero=await exe(sql);
-    res.render('website/home.ejs',{hero:hero[0]});
-})
+// Home
+router.get('/', async (req, res) => {
+    try {
+        const hero = await exe('SELECT * FROM hero');
+        res.render('website/home.ejs', { hero: hero[0] });
+    } catch (err) {
+        console.log('Home Error:', err);
+        res.status(500).send('Database Error');
+    }
+});
 
-router.get('/about',async(req,res)=>{
-    var select = `select * from about`
-    var about = await exe(select)
-    res.render('website/about.ejs',{about:about[0]})
-})
+// About
+router.get('/about', async (req, res) => {
+    try {
+        const about = await exe('SELECT * FROM about');
+        res.render('website/about.ejs', { about: about[0] });
+    } catch (err) {
+        console.log('About Error:', err);
+        res.status(500).send('Database Error');
+    }
+});
 
-// router.get('/resume',async(req,res)=>{
-//     var sql='select * from technical_skills';
-//     var skill=await exe(sql);
-//     var sql1='select * from experience';
-//     var experience=await exe(sql1);
-//      var sql2='select * from experience';
-//     var education=await exe(sql);
-//     // res.send(skill);
-//     res.render('website/resume.ejs',{skill:skill,education:education});
-// })
+// Resume
 router.get('/resume', async (req, res) => {
-    var skill = await exe("SELECT * FROM technical_skills");
-    var experience = await exe("SELECT * FROM experience");
-    var education = await exe("SELECT * FROM education");
-    res.render("website/resume.ejs", {skill: skill,experience: experience,education: education});
+    try {
+        const skill = await exe('SELECT * FROM technical_skills');
+        const experience = await exe('SELECT * FROM experience');
+        const education = await exe('SELECT * FROM education');
 
+        res.render('website/resume.ejs', {
+            skill: skill,
+            experience: experience,
+            education: education
+        });
+    } catch (err) {
+        console.log('Resume Error:', err);
+        res.status(500).send('Database Error');
+    }
 });
 
-router.get("/services", async (req, res) => {
-    var services = await exe("SELECT * FROM services");
-    res.render("website/services", {services: services});
-
+// Services
+router.get('/services', async (req, res) => {
+    try {
+        const services = await exe('SELECT * FROM services');
+        res.render('website/services', { services: services });
+    } catch (err) {
+        console.log('Services Error:', err);
+        res.status(500).send('Database Error');
+    }
 });
 
+// Portfolio
 router.get('/portfolio', async (req, res) => {
+    try {
+        const portfolio = await exe('SELECT * FROM porfolio');
+        const blog = await exe('SELECT * FROM blog');
 
-    var sql = "SELECT * FROM porfolio";
-    var data = await exe(sql);
-     var select = `select * from blog`
-    var blog = await exe(select)
-
-    res.render("website/portfolio", {
-        portfolio: data ,blog:blog});
-
+        res.render('website/portfolio', {
+            portfolio: portfolio,
+            blog: blog
+        });
+    } catch (err) {
+        console.log('Portfolio Error:', err);
+        res.status(500).send('Database Error');
+    }
 });
 
-router.get('/contact',async(req,res)=>{
-    var sql='select * from contact';
-    var contact=await exe(sql);
-    res.render('website/contact.ejs',{contact:contact[0]});
-})
-router.post('/save_contact',async(req,res)=>{
-    // res.send(req.body);
-    var {name,email,subject,message}=req.body;
-    var status='pending';
-    var timestamp=Date.now();
-    let date=new Date(timestamp)
-    .toISOString()
-    .slice(0, 19)
-    .replace('T',' ');
-    var sql='insert into contact_save(cname,cemail,csubject,cmessage,cstatus,cdate)values(?,?,?,?,?,?)';
-    var data=await exe(sql,[name,email,subject,message,status,date]);
-    res.redirect('/contact');
-})
+// Contact
+router.get('/contact', async (req, res) => {
+    try {
+        const contact = await exe('SELECT * FROM contact');
+        res.render('website/contact.ejs', { contact: contact[0] });
+    } catch (err) {
+        console.log('Contact Error:', err);
+        res.status(500).send('Database Error');
+    }
+});
 
+// Save Contact
+router.post('/save_contact', async (req, res) => {
+    try {
+        const { name, email, subject, message } = req.body;
+
+        const status = 'pending';
+
+        const date = new Date()
+            .toISOString()
+            .slice(0, 19)
+            .replace('T', ' ');
+
+        const sql = `
+            INSERT INTO contact_save
+            (cname, cemail, csubject, cmessage, cstatus, cdate)
+            VALUES (?, ?, ?, ?, ?, ?)
+        `;
+
+        await exe(sql, [
+            name,
+            email,
+            subject,
+            message,
+            status,
+            date
+        ]);
+
+        res.redirect('/contact');
+    } catch (err) {
+        console.log('Save Contact Error:', err);
+        res.status(500).send('Contact Save Error');
+    }
+});
+
+// Testimonials
 router.get('/testimonials', async (req, res) => {
-    var testimonial = await exe("SELECT * FROM testimonial");
-    res.render("website/testimonials.ejs", {
-        testimonial: testimonial
-    });
+    try {
+        const testimonial = await exe('SELECT * FROM testimonial');
 
+        res.render('website/testimonials.ejs', {
+            testimonial: testimonial
+        });
+    } catch (err) {
+        console.log('Testimonials Error:', err);
+        res.status(500).send('Database Error');
+    }
 });
 
-router.get('/blog',async(req,res)=>{
-    
-    var select = `select * from blog`
-    var blog = await exe(select)
-    res.render('website/blog.ejs',{blog:blog})
-})
+// Blog
+router.get('/blog', async (req, res) => {
+    try {
+        const blog = await exe('SELECT * FROM blog');
+        res.render('website/blog.ejs', { blog: blog });
+    } catch (err) {
+        console.log('Blog Error:', err);
+        res.status(500).send('Database Error');
+    }
+});
 
-
-module.exports=router;
+module.exports = router;
